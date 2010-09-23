@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{roles_for_mongoid}
-  s.version = "0.2.1"
+  s.version = "0.2.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -17,9 +17,11 @@ Gem::Specification.new do |s|
      "README.markdown"
   ]
   s.files = [
-    ".document",
+    ".bundle/config",
+     ".document",
      ".gitignore",
      ".rspec",
+     "Gemfile",
      "LICENSE",
      "README.markdown",
      "Rakefile",
@@ -75,26 +77,29 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
-      s.add_runtime_dependency(%q<mongoid>, ["~> 2.0.0.beta.17"])
+      s.add_runtime_dependency(%q<mongoid>, ["~> 2.0.0.beta.18"])
+      s.add_runtime_dependency(%q<bson>, ["~> 1.0.7"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
       s.add_runtime_dependency(%q<sugar-high>, ["~> 0.2.10"])
-      s.add_runtime_dependency(%q<roles_generic>, ["~> 0.2.6"])
+      s.add_runtime_dependency(%q<roles_generic>, ["~> 0.2.7"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
-      s.add_dependency(%q<mongoid>, ["~> 2.0.0.beta.17"])
+      s.add_dependency(%q<mongoid>, ["~> 2.0.0.beta.18"])
+      s.add_dependency(%q<bson>, ["~> 1.0.7"])
       s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_dependency(%q<require_all>, ["~> 1.2.0"])
       s.add_dependency(%q<sugar-high>, ["~> 0.2.10"])
-      s.add_dependency(%q<roles_generic>, ["~> 0.2.6"])
+      s.add_dependency(%q<roles_generic>, ["~> 0.2.7"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
-    s.add_dependency(%q<mongoid>, ["~> 2.0.0.beta.17"])
+    s.add_dependency(%q<mongoid>, ["~> 2.0.0.beta.18"])
+    s.add_dependency(%q<bson>, ["~> 1.0.7"])
     s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
     s.add_dependency(%q<require_all>, ["~> 1.2.0"])
     s.add_dependency(%q<sugar-high>, ["~> 0.2.10"])
-    s.add_dependency(%q<roles_generic>, ["~> 0.2.6"])
+    s.add_dependency(%q<roles_generic>, ["~> 0.2.7"])
   end
 end
 
