@@ -36,7 +36,7 @@ module RoleStrategy::Mongoid
       # assign roles
       def roles=(*_roles) 
         _roles = get_roles(_roles)
-        return nil if !_roles || _roles.empty?
+        return nil if roles.none?                
         
         role_relations = role_class.find_roles(_roles) 
         self.send("#{role_attribute}=", role_relations)
