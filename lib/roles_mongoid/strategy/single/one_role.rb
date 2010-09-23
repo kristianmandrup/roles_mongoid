@@ -32,10 +32,9 @@ module RoleStrategy::Mongoid
       # assign roles
       def roles=(*_roles) 
         _roles = get_roles(_roles)
-        return nil if roles.none?                
+        return nil if _roles.none?                
                 
-        first_role = _roles.flatten.first
-        role_relation = role_class.find_role(first_role)  
+        role_relation = role_class.find_role(_roles.first)  
         self.send("#{role_attribute}=", role_relation)
         one_role.save
       end
