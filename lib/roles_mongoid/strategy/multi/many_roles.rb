@@ -35,19 +35,8 @@ module RoleStrategy::Mongoid
       
       # assign roles
       def roles=(*_roles) 
-
-        raise "Role class #{role_class} does not have a #find_role(role) method" if !role_class.respond_to? :find_role
+        _roles = get_roles(_roles)
         return nil if !_roles || _roles.empty?
-        
-        _roles = _roles.select{|role| role.kind_of?(role_class) || role.kind_of_label?}
-        _roles.map! do |role| 
-          case role
-          when role_class
-            role.name
-          else
-            role.to_s
-          end
-        end
         
         role_relations = role_class.find_roles(_roles) 
         self.send("#{role_attribute}=", role_relations)
