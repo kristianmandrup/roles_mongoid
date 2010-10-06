@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
      "lib/roles_mongoid/strategy/single/admin_flag.rb",
      "lib/roles_mongoid/strategy/single/one_role.rb",
      "lib/roles_mongoid/strategy/single/role_string.rb",
-     "roles_for_mongoid.gemspec",
+     "roles_mongoid.gemspec",
      "sandbox/roles_assign.rb",
      "sandbox/single_role.rb",
      "sandbox/test.rb",
