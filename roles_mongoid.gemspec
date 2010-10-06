@@ -4,7 +4,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{roles_for_mongoid}
+  s.name = %q{roles_mongoid}
   s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
      "lib/roles_mongoid/strategy/single/admin_flag.rb",
      "lib/roles_mongoid/strategy/single/one_role.rb",
      "lib/roles_mongoid/strategy/single/role_string.rb",
-     "roles_for_mongoid.gemspec",
+     "roles_mongoid.gemspec",
      "sandbox/roles_assign.rb",
      "sandbox/single_role.rb",
      "sandbox/test.rb",
@@ -54,7 +54,7 @@ Gem::Specification.new do |s|
      "tmp/rails/app/models/user.rb",
      "tmp/rails/config/routes.rb"
   ]
-  s.homepage = %q{http://github.com/kristianmandrup/roles_for_mm}
+  s.homepage = %q{http://github.com/kristianmandrup/roles_mongoid}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}

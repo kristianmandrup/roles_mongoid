@@ -1,7 +1,7 @@
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "roles_for_mongoid"
+    gem.name = "roles_mongoid"
     gem.summary = %Q{Implementation of Roles generic API for Mongoid}
     gem.description = %Q{Makes it easy to set a role strategy on your User model in Mongoid}
     gem.email = "kmandrup@gmail.com"
