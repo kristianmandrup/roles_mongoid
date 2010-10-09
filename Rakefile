@@ -5,7 +5,7 @@ begin
     gem.summary = %Q{Implementation of Roles generic API for Mongoid}
     gem.description = %Q{Makes it easy to set a role strategy on your User model in Mongoid}
     gem.email = "kmandrup@gmail.com"
-    gem.homepage = "http://github.com/kristianmandrup/roles_for_mm"
+    gem.homepage = "http://github.com/kristianmandrup/roles_mongoid"
     gem.authors = ["Kristian Mandrup"]
     gem.add_development_dependency "rspec", '~> 2.0.0.beta.22'
 

@@ -50,7 +50,7 @@ module RoleStrategy::Mongoid
         save
       end
 
-      # query assigned roles
+      # query assigned roles                           
       def roles
         self.send(role_attribute)
       end
