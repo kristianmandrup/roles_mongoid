@@ -50,6 +50,13 @@ module RoleStrategy::Mongoid
         save
       end
 
+      def remove_roles(*roles)  
+        raise "Role class #{role_class} does not have a #find_role(role) method" if !role_class.respond_to? :find_role
+        role_relations = role_class.find_roles(*roles)
+        self.send("#{role_attribute}=", roles - role_relations)
+        save
+      end
+
       # query assigned roles                           
       def roles
         self.send(role_attribute)
