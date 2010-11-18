@@ -10,7 +10,7 @@ begin
     gem.add_development_dependency "rspec", '~> 2.0.0.beta.22'
 
     gem.add_dependency "mongoid",           '~> 2.0.0.beta.18'
-    gem.add_dependency 'bson',              '~> 1.0.7'
+    gem.add_dependency 'bson',              '~> 1.0.4'
     gem.add_dependency "activesupport",     '~> 3.0.0'
     gem.add_dependency "require_all",       '~> 1.2.0' 
     gem.add_dependency "sugar-high",        '~> 0.2.10'        
