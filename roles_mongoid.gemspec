@@ -81,7 +81,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<bson>, ["~> 1.0.7"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_runtime_dependency(%q<sugar-high>, [">= 0.2.11"])
+      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.3.0"])
       s.add_runtime_dependency(%q<roles_generic>, ["~> 0.2.7"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
@@ -89,7 +89,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bson>, ["~> 1.0.7"])
       s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_dependency(%q<sugar-high>, [">= 0.2.11"])
+      s.add_dependency(%q<sugar-high>, ["~> 0.3.0"])
       s.add_dependency(%q<roles_generic>, ["~> 0.2.7"])
     end
   else
@@ -98,7 +98,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bson>, ["~> 1.0.7"])
     s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
     s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-    s.add_dependency(%q<sugar-high>, [">= 0.2.11"])
+    s.add_dependency(%q<sugar-high>, ["~> 0.3.0"])
     s.add_dependency(%q<roles_generic>, ["~> 0.2.7"])
   end
 end
