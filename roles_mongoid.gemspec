@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-11-18}
+  s.date = %q{2010-11-19}
   s.description = %q{Makes it easy to set a role strategy on your User model in Mongoid}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -81,7 +81,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<bson>, ["~> 1.0.4"])
       s.add_runtime_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.2.10"])
+      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.3.0"])
       s.add_runtime_dependency(%q<roles_generic>, ["~> 0.2.7"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
@@ -89,7 +89,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bson>, ["~> 1.0.4"])
       s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
       s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_dependency(%q<sugar-high>, ["~> 0.2.10"])
+      s.add_dependency(%q<sugar-high>, ["~> 0.3.0"])
       s.add_dependency(%q<roles_generic>, ["~> 0.2.7"])
     end
   else
@@ -98,7 +98,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bson>, ["~> 1.0.4"])
     s.add_dependency(%q<activesupport>, ["~> 3.0.0"])
     s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-    s.add_dependency(%q<sugar-high>, ["~> 0.2.10"])
+    s.add_dependency(%q<sugar-high>, ["~> 0.3.0"])
     s.add_dependency(%q<roles_generic>, ["~> 0.2.7"])
   end
 end
