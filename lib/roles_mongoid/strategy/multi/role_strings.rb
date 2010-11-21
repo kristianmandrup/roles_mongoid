@@ -37,11 +37,12 @@ module RoleStrategy::Mongoid
       alias_method :role=, :roles=
 
       def add_roles(*roles_to_add)
-        roles_to_add = roles_to_add.flatten.map{|r| r.to_s if valid_role?(r)}.compact
+        new_roles = roles_to_add.flatten.map{|r| r.to_s if valid_role?(r)}.compact
         if new_roles && new_roles.not.empty?
           self.send(role_attribute) << new_roles.compact.uniq
         end
       end
+      alias_method :add_role
 
       # query assigned roles
       def roles
