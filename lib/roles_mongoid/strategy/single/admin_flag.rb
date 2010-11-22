@@ -26,27 +26,6 @@ module RoleStrategy::Mongoid
     end
 
     module Implementation
-      # def role_attribute
-      #   strategy_class.roles_attribute_name
-      # end
-      #     
-      # # assign roles
-      # def roles=(*new_roles)                                 
-      #   first_role = new_roles.flatten.first
-      #   if valid_role?(first_role)
-      #     self.send("#{role_attribute}=", new_roles.flatten.first.admin?) 
-      #   else
-      #     raise ArgumentError, "The role #{first_role} is not a valid role"
-      #   end
-      # end
-      # 
-      # # query assigned roles
-      # def roles
-      #   role = self.send(role_attribute) ? strategy_class.admin_role_key : strategy_class.default_role_key
-      #   [role]
-      # end
-      # alias_method :roles_list, :roles
-
       include Roles::Mongoid::Strategy::Single
 
       def new_role role

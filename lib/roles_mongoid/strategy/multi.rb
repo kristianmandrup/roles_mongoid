@@ -23,13 +23,15 @@ module Roles::Mongoid
         role_names = role_names.flat_uniq
         set_empty_roles and return if roles_diff(role_names).empty?
         roles_to_remove = select_valid_roles(role_names)
-        set_roles roles_diff(role_names)
+        diff = roles_diff(role_names)
+        diff = role_class.find_roles(diff).to_a if self.class.role_strategy.type == :complex
+        set_roles(diff) 
         true
       end
 
       # query assigned roles
       def roles
-        get_roles.map do |role|
+        get_roles.to_a.map do |role|
           role.respond_to?(:sym) ? role.to_sym : role
         end
       end
@@ -41,9 +43,12 @@ module Roles::Mongoid
       end
       
       protected
-      
-      def set_roles *roles                      
-        self.send("#{role_attribute}=", new_roles(roles))
+
+      def set_roles *roles
+        roles = roles.flat_uniq
+        roles = roles.first if self.class.role_strategy.multiplicity == :single        
+        # self.send("#{role_attribute}").send(:<<, roles)        
+        self.send("#{role_attribute}=", roles)        
       end
 
       def get_roles

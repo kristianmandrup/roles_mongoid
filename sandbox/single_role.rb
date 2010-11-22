@@ -12,7 +12,7 @@ end
 class Role
   include Mongoid::Document
   field :name, :type => String
-  referenced_in :user  
+  references_many :users #one_role, :class_name => 'Role'
 
   class << self
     def find_roles(*role_names)
@@ -36,27 +36,41 @@ end
 
 class User 
   include Mongoid::Document  
-  include Blip
+  # include Blip
   field :name, :type => String  
-  references_one :role
-  # do_it 
+  referenced_in :one_role, :class_name =>  'Role'
   
+  # do_it   
 end
 
-user = User.create
-role = Role.create 
-
-puts "role: #{role.inspect}"
-user.role = role
+user = User.create :name => 'Sandy'
+user2 = User.create :name => 'Mike'
+role = Role.create :name => 'Guest'
+role2 = Role.create :name => 'Admin'
 
 user.save
+user2.save
+
+user.one_role = role2 #<< [role, role2]
+role.users << [user, user2]
+user2.one_role = role
+
+# role.users << user
+# role.users << user2
+
+role.save 
+
+puts "user: #{user.inspect}"
+puts "user2 #{user2.inspect}"
+puts "role: #{role.inspect}"  
+puts "role users: #{role.users.to_a.inspect}"  
+
 
 # Role.create :name => 'guest'
 # Role.create :name => 'admin'
 # 
 # user = User.create :name => 'Kristian'
 # 
-# puts user.inspect
 # 
 # user.role.create :name => :guest
 # user.save
@@ -64,5 +78,5 @@ user.save
 # user.role = Role.find_role(:guest).first
 # user.save
 
-puts user.role.inspect
+
 

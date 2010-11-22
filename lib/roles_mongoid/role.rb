@@ -12,7 +12,9 @@ end
 class Role
   include Mongoid::Document
   field :name, :type => String
-  referenced_in :user
+  # references_many :users
+
+  # references_many :users, :class_name => 'User', :stored_as => :array  
 
   class << self
     def find_roles(*role_names)
