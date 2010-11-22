@@ -13,7 +13,7 @@ module Roles::Mongoid
       end
             
       def get_role
-        r = self.send(role_attribute)
+        r = self.send(role_attribute) 
       end
 
       def get_roles
