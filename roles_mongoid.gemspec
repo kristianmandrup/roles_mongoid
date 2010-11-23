@@ -85,7 +85,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 2.1"])
       s.add_runtime_dependency(%q<mongoid>, [">= 2.0.0.beta.19"])
-      s.add_runtime_dependency(%q<bson>, [">= 1.0.7"])
+      s.add_runtime_dependency(%q<bson>, [">= 1.1.1"])
       s.add_runtime_dependency(%q<sugar-high>, ["~> 0.3.0"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
       s.add_runtime_dependency(%q<roles_generic>, [">= 0.3.0"])
@@ -94,7 +94,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<rspec>, [">= 2.1"])
       s.add_dependency(%q<mongoid>, [">= 2.0.0.beta.19"])
-      s.add_dependency(%q<bson>, [">= 1.0.7"])
+      s.add_dependency(%q<bson>, [">= 1.1.1"])
       s.add_dependency(%q<sugar-high>, ["~> 0.3.0"])
       s.add_dependency(%q<require_all>, ["~> 1.2.0"])
       s.add_dependency(%q<roles_generic>, [">= 0.3.0"])
@@ -104,7 +104,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<rspec>, [">= 2.1"])
     s.add_dependency(%q<mongoid>, [">= 2.0.0.beta.19"])
-    s.add_dependency(%q<bson>, [">= 1.0.7"])
+    s.add_dependency(%q<bson>, [">= 1.1.1"])
     s.add_dependency(%q<sugar-high>, ["~> 0.3.0"])
     s.add_dependency(%q<require_all>, ["~> 1.2.0"])
     s.add_dependency(%q<roles_generic>, [">= 0.3.0"])
