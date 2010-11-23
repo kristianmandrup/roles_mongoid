@@ -16,9 +16,11 @@ module Roles
       
       MAP = {
         :admin_flag   => "field :admin_flag, :type => Boolean",
-        :many_roles   => "references_many :many_roles, :stored_as => :array, :class_name => 'Role', :default => []",
-        :one_role     => "references_one :one_role, :class_name => 'Role'",
-        :roles_mask   => "field :roles_mask, :type => Integer, :default => 1",
+        
+        :many_roles   => "references_many :many_roles, :stored_as => :array, :class_name => 'Role'",
+        :one_role     => "referenced_in :one_role, :class_name => 'Role'",
+
+        :roles_mask   => "field :roles_mask, :type => Integer, :default => 0",
         :role_string  => "field :role_string, :type => String",
         :role_strings => "field :role_strings, :type => Array",
         :roles_string => "field :roles_string, :type => String"
@@ -28,7 +30,7 @@ module Roles
         if options == :default && MAP[name]
           instance_eval MAP[name] 
         end
-        role_strategy name, options
+        set_role_strategy name, options
       end    
     end
   end
