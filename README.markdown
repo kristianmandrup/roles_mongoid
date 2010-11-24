@@ -14,6 +14,14 @@ It also implements the following Role strategies:
 * role_string
 * role_strings
 
+*Update Nov 24, 2010*
+I have started developing some basic infrastructure to support embedded role strategies in the future.
+
+* embed_one_role
+* embed_many_roles
+
+Please join in the effort to implement and add these strategies to the mix.
+
 # Install
 
 <code>gem install roles_mongoid</code>
@@ -43,7 +51,8 @@ Apply :admin_flag Role strategy to User model using default roles and extra role
 
 Apply :one_role Role strategy to User model without default roles, only with roles :user, :special and :editor
 
-<code>$ rails g mongoid:roles_migration User --strategy one_role --roles user special editor --no-default-roles</code>
+<code>$ rails g mongoid:roles_migration User --strategy one_role --roles user special editor --no-default-roles</code> 
+
 ## Note on Patches/Pull Requests
  
 * Fork the project.

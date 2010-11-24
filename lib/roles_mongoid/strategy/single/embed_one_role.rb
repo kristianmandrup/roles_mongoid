@@ -1,7 +1,7 @@
 require 'roles_mongoid/strategy/single'
 
 module RoleStrategy::Mongoid
-  module OneRole
+  module EmbedOneRole
     def self.default_role_attribute
       :one_role
     end
