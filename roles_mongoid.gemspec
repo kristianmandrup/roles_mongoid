@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{roles_mongoid}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-11-23}
+  s.date = %q{2010-11-24}
   s.description = %q{Makes it easy to set a role strategy on your User model in Mongoid}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -29,16 +29,19 @@ Gem::Specification.new do |s|
      "lib/generators/mongoid/roles/roles_generator.rb",
      "lib/roles_mongoid.rb",
      "lib/roles_mongoid/base.rb",
+     "lib/roles_mongoid/embedded_role.rb",
      "lib/roles_mongoid/namespaces.rb",
      "lib/roles_mongoid/role.rb",
      "lib/roles_mongoid/strategy.rb",
      "lib/roles_mongoid/strategy/multi.rb",
+     "lib/roles_mongoid/strategy/multi/embed_many_roles.rb",
      "lib/roles_mongoid/strategy/multi/many_roles.rb",
      "lib/roles_mongoid/strategy/multi/role_strings.rb",
      "lib/roles_mongoid/strategy/multi/roles_mask.rb",
      "lib/roles_mongoid/strategy/shared.rb",
      "lib/roles_mongoid/strategy/single.rb",
      "lib/roles_mongoid/strategy/single/admin_flag.rb",
+     "lib/roles_mongoid/strategy/single/embed_one_role.rb",
      "lib/roles_mongoid/strategy/single/one_role.rb",
      "lib/roles_mongoid/strategy/single/role_string.rb",
      "roles_mongoid.gemspec",
@@ -48,10 +51,12 @@ Gem::Specification.new do |s|
      "spec/generator_spec_helper.rb",
      "spec/roles_mongoid/generators/roles_generator_spec.rb",
      "spec/roles_mongoid/strategy/api_examples.rb",
+     "spec/roles_mongoid/strategy/multi/embed_many_roles_spec.rb",
      "spec/roles_mongoid/strategy/multi/many_roles_spec.rb",
      "spec/roles_mongoid/strategy/multi/role_strings_spec.rb",
      "spec/roles_mongoid/strategy/multi/roles_mask_spec.rb",
      "spec/roles_mongoid/strategy/single/admin_flag_spec.rb",
+     "spec/roles_mongoid/strategy/single/embed_one_role_spec.rb",
      "spec/roles_mongoid/strategy/single/one_role_spec.rb",
      "spec/roles_mongoid/strategy/single/role_string_spec.rb",
      "spec/roles_mongoid/strategy/user_setup.rb",
@@ -68,10 +73,12 @@ Gem::Specification.new do |s|
     "spec/generator_spec_helper.rb",
      "spec/roles_mongoid/generators/roles_generator_spec.rb",
      "spec/roles_mongoid/strategy/api_examples.rb",
+     "spec/roles_mongoid/strategy/multi/embed_many_roles_spec.rb",
      "spec/roles_mongoid/strategy/multi/many_roles_spec.rb",
      "spec/roles_mongoid/strategy/multi/role_strings_spec.rb",
      "spec/roles_mongoid/strategy/multi/roles_mask_spec.rb",
      "spec/roles_mongoid/strategy/single/admin_flag_spec.rb",
+     "spec/roles_mongoid/strategy/single/embed_one_role_spec.rb",
      "spec/roles_mongoid/strategy/single/one_role_spec.rb",
      "spec/roles_mongoid/strategy/single/role_string_spec.rb",
      "spec/roles_mongoid/strategy/user_setup.rb",
