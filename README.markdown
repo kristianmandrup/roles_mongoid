@@ -5,7 +5,8 @@ A Mongoid implementation of [roles generic](http://github.com/kristianmandrup/ro
 ## Intro
 
 Implements the [roles generic](http://github.com/kristianmandrup/roles_generic) Roles API
-It also implements the following Role strategies:
+
+Generic Role strategies implemented:
 
 * admin_flag
 * many_roles
@@ -15,7 +16,8 @@ It also implements the following Role strategies:
 * role_strings
 
 *Update Nov 24, 2010*
-I have started developing some basic infrastructure to support embedded role strategies in the future.
+Version 0.3.1 and up is a major refactoring to support Roles Generic 0.3 and above with a new and improved architecture and testing framework. 
+Since 0.3.2 development of some basic infrastructure to support embedded role strategies in the future has been initiated.
 
 * embed_one_role
 * embed_many_roles
