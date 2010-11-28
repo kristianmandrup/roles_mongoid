@@ -7,7 +7,7 @@ begin
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/roles_mongoid"
     gem.authors = ["Kristian Mandrup"]
-    gem.add_development_dependency "rspec", '>= 2.1'
+    gem.add_development_dependency "rspec", '>= 2.0.1'
 
     gem.add_dependency "mongoid",           '>= 2.0.0.beta.19'
     gem.add_dependency 'bson',              '>= 1.1.1'
