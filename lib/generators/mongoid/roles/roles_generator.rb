@@ -9,12 +9,12 @@ module Mongoid
       class_option :strategy, :type => :string, :aliases => "-s", :default => 'role_string', 
                    :desc => "Role strategy to use (admin_flag, role_string, roles_string, role_strings, one_role, many_roles, roles_mask)"
 
-
+      class_option :logfile, :type => :string,   :default => nil,   :desc => "Logfile location"
       class_option :roles, :type => :array, :aliases => "-r", :default => [], :desc => "Valid roles"
 
       def apply_role_strategy
-        log.add_logfile
-        log.debug "apply_role_strategy for : #{strategy} in model #{name}"
+        logger.add_logfile :logfile => logfile if logfile
+        logger.debug "apply_role_strategy for : #{strategy} in model #{name}"
         insert_into_model name do
           insertion_text
         end
@@ -22,9 +22,10 @@ module Mongoid
       
       protected                  
 
+      include Rails3::Assist::BasicLogger
       extend Rails3::Assist::UseMacro
+
       use_orm :mongoid
-      include Rails::Assist::BasicLogging
 
       def orm
         :mongoid
