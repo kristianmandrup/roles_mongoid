@@ -3,8 +3,10 @@ require 'logging_assist'
 
 module Mongoid 
   module Generators
-    class RolesGenerator < Rails::Generators::NamedBase      
+    class RolesGenerator < Rails::Generators::Base      
       desc "Add role strategy to a model" 
+
+      # argument name
       
       class_option :strategy, :type => :string, :aliases => "-s", :default => 'role_string', 
                    :desc => "Role strategy to use (admin_flag, role_string, roles_string, role_strings, one_role, many_roles, roles_mask)"
@@ -15,7 +17,7 @@ module Mongoid
       def apply_role_strategy
         logger.add_logfile :logfile => logfile if logfile
         logger.debug "apply_role_strategy for : #{strategy} in model #{name}"
-        insert_into_model name do
+        insert_into_model user_model_name, :after => /include Mongoid::\w+/ do
           insertion_text
         end
       end 
@@ -26,6 +28,10 @@ module Mongoid
       extend Rails3::Assist::UseMacro
 
       use_orm :mongoid
+
+      def user_model_name
+        name || 'User'
+      end
 
       def orm
         :mongoid

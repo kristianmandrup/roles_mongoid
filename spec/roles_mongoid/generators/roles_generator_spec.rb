@@ -23,6 +23,7 @@ describe 'role strategy generator: admin_flag' do
       create_model :user do
         '# content'
       end
+      
       with_generator do |g|   
         arguments = "User --strategy admin_flag --roles admin user"
         puts "arguments: #{arguments}"
