@@ -3,7 +3,7 @@ require 'logging_assist'
 
 module Mongoid 
   module Generators
-    class RolesGenerator < Rails::Generators::Base      
+    class RolesGenerator < Rails::Generators::NamedBase      
       desc "Add role strategy to a model" 
 
       # argument name
@@ -17,9 +17,16 @@ module Mongoid
       def apply_role_strategy
         logger.add_logfile :logfile => logfile if logfile
         logger.debug "apply_role_strategy for : #{strategy} in model #{name}"
+
+        say "User model #{user_model_name} not found", :red if !has_model_file?(user_model_name)
+
         insert_into_model user_model_name, :after => /include Mongoid::\w+/ do
           insertion_text
-        end
+        end     
+
+        unless read_model(:user) =~ /use_roles_strategy/
+          inject_into_file model_file(:user), "use_roles_strategy :#{strategy}\n\n", :before => "class"
+        end        
       end 
       
       protected                  
@@ -62,7 +69,12 @@ module Mongoid
       end
 
       def roles_statement
+        return '' if has_valid_roles_statement?
         roles ? "valid_roles_are #{roles.join(', ')}" : ''
+      end
+
+      def has_valid_roles_statement? 
+        !(read_model(user_model_name) =~ /valid_roles_are/).nil?
       end
 
       def insertion_text
