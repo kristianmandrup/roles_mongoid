@@ -10,13 +10,13 @@ begin
     gem.add_development_dependency "rspec", '>= 2.0.1'
 
     gem.add_dependency "mongoid",           '>= 2.0.0.beta.19'
-    gem.add_dependency 'bson',              '>= 1.1.1'
+    gem.add_dependency 'bson',              '>= 1.1.4'
 
     gem.add_dependency "sugar-high",      "~> 0.3.0"
     gem.add_dependency "require_all",     '~> 1.2.0' 
     gem.add_dependency "roles_generic",   '>= 0.3.0'  
     
-    gem.add_dependency 'rails3_artifactor', '~> 0.3.1'
+    gem.add_dependency 'rails3_artifactor', '>= 0.3.1'
     gem.add_dependency 'logging_assist',    '~> 0.1.6'
 
 
