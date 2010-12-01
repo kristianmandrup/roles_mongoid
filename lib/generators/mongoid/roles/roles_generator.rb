@@ -29,6 +29,10 @@ module Mongoid
 
       use_orm :mongoid
 
+      def logfile
+        options[:logfile]
+      end
+
       def user_model_name
         name || 'User'
       end
