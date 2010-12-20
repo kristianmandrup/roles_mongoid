@@ -18,15 +18,22 @@ module Mongoid
         logger.add_logfile :logfile => logfile if logfile
         logger.debug "apply_role_strategy for : #{strategy} in model #{name}"
 
-        say "User model #{user_model_name} not found", :red if !has_model_file?(user_model_name)
+        if !has_model_file?(user_model_name)
+          say "User model #{user_model_name} not found", :red
+          return 
+        end
 
-        insert_into_model user_model_name, :after => /include Mongoid::\w+/ do
-          insertion_text
-        end     
+        begin 
+          insert_into_model user_model_name, :after => /include Mongoid::\w+/ do
+            insertion_text
+          end     
 
-        unless read_model(:user) =~ /use_roles_strategy/
-          inject_into_file model_file(:user), "use_roles_strategy :#{strategy}\n\n", :before => "class"
-        end        
+          unless read_model(:user) =~ /use_roles_strategy/
+            inject_into_file model_file(:user), "use_roles_strategy :#{strategy}\n\n", :before => "class"
+          end        
+        rescue Exception => e
+          logger.debug"Error: #{e.message}"
+        end
       end 
       
       protected                  

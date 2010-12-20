@@ -2,8 +2,11 @@ module Roles::Base
   def valid_roles_are(*role_list)
     strategy_class.valid_roles = role_list.to_symbols
     if role_class_name
-      role_list.each do |name|
-        role_class_name.create(:name => name.to_s)
+      role_list.each do |name| 
+        begin
+          role_class_name.create(:name => name.to_s)
+        rescue
+        end
       end
     end
   end
@@ -15,6 +18,8 @@ class Role
   # references_many :users
 
   # references_many :users, :class_name => 'User', :stored_as => :array  
+
+  validates_uniqueness_of :name
 
   class << self
     def find_roles(*role_names)
