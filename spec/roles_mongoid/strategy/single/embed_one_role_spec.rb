@@ -17,3 +17,4 @@ def api_name
 end
 
 load 'roles_mongoid/strategy/api_examples.rb'
+

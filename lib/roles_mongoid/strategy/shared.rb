@@ -3,6 +3,7 @@ module Roles::Mongoid
     module Shared
       def set_role role
         raise ArgumentError, "#set_role only takes a single role as argument, not #{role}" if role.kind_of?(Array)
+        puts "role: #{role.inspect}, attrib: #{role_attribute.inspect}"
         self.send("#{role_attribute}=", role)
       end
       

@@ -9,7 +9,7 @@ module Mongoid
       # argument name
       
       class_option :strategy, :type => :string, :aliases => "-s", :default => 'role_string', 
-                   :desc => "Role strategy to use (admin_flag, role_string, roles_string, role_strings, one_role, many_roles, roles_mask)"
+                   :desc => "Role strategy to use (admin_flag, role_string, roles_string, role_strings, roles_mask, one_role, many_roles, embed_one_role, embed_many_roles)"
 
       class_option :logfile, :type => :string,   :default => nil,   :desc => "Logfile location"
       class_option :roles, :type => :array, :aliases => "-r", :default => [], :desc => "Valid roles"
@@ -17,6 +17,10 @@ module Mongoid
       def apply_role_strategy
         logger.add_logfile :logfile => logfile if logfile
         logger.debug "apply_role_strategy for : #{strategy} in model #{name}"
+
+        if !valid_strategy?
+          say "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}", :red
+        end
 
         if !has_model_file?(user_model_name)
           say "User model #{user_model_name} not found", :red
@@ -43,6 +47,14 @@ module Mongoid
 
       use_orm :mongoid
 
+      def valid_strategy?
+        valid_strategies.include? strategy.to_sym
+      end
+
+      def valid_strategies
+        [:admin_flag, :one_role, :embed_one_role, :role_string, :embed_many_roles, :many_roles, :role_strings, :roles_mask]
+      end
+
       def logfile
         options[:logfile]
       end
@@ -67,8 +79,17 @@ module Mongoid
         roles_to_add.map{|r| ":#{r}" }
       end
 
-      def role_strategy_statement 
-        "strategy :#{strategy}, :default\n#{role_class_stmt}"
+      def role_strategy_statement
+        "strategy :#{strategy}, #{strategy_option_arg}"
+      end
+
+      def strategy_option_arg
+        case strategy
+        when 'embed_one_role', 'embed_many_roles'
+          ":role_class => :role, :config => :default"
+        else
+          ":default\n#{role_class_stmt}"
+        end
       end
 
       def role_class_stmt

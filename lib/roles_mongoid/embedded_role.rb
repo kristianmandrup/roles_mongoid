@@ -1,3 +1,5 @@
+puts "Embedded Role"
+
 module Roles::Base
   def valid_roles_are(*role_list)
     strategy_class.valid_roles = role_list.to_symbols
@@ -7,6 +9,8 @@ end
 class Role
   include Mongoid::Document
   field :name, :type => String
+  
+  validates_uniqueness_of :name  
 
   class << self
     def find_roles(*role_names)

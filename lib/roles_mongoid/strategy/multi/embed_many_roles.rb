@@ -22,8 +22,7 @@ module RoleStrategy::Mongoid
 
       def in_any_role(*role_names)
         begin
-          role_ids = Role.where(:name.in => role_names.to_strings).to_a.map(&:_id)
-          where(:"#{role_attribute}".in => role_ids).to_a
+          any_in("many_roles.name" => role_names)
         rescue
           return []
         end
@@ -32,6 +31,48 @@ module RoleStrategy::Mongoid
 
     module Implementation
       include Roles::Mongoid::Strategy::Multi
+
+      def set_role role
+        raise ArgumentError, "#set_role only takes a single role as argument, not #{role}" if role.kind_of?(Array)
+        self.send("#{role_attribute}=", nil)
+        self.send("create_#{role_attribute}").create(:name => role)
+      end      
+
+      def set_roles *roles
+        roles = roles.flat_uniq
+        self.send("#{role_attribute}=", nil)        
+        roles.each do |role|
+          self.send("#{role_attribute}").create(:name => role)
+        end
+      end
+
+      def roles_diff *roles
+        self.roles_list - extract_roles(roles.flat_uniq)
+      end
+
+      def remove_roles *role_names
+        role_names = role_names.flat_uniq
+        set_empty_roles and return if roles_diff(role_names).empty?
+        roles_to_remove = select_valid_roles(role_names)       
+        
+        diff = roles_diff(role_names)
+        set_roles(diff) 
+        true
+      end
+
+      def exchange_roles *role_names
+        options = last_option role_names
+        raise ArgumentError, "Must take an options hash as last argument with a :with option signifying which role(s) to replace with" if !options || !options.kind_of?(Hash)
+        common = role_names.to_symbols & roles_list
+        if !common.empty?
+          with_roles = options[:with]
+          set_roles with_roles
+        end
+      end
+
+      def select_valid_roles *role_names
+        role_names = role_names.flat_uniq.select{|role| valid_role? role }        
+      end      
 
       def has_roles?(*roles_names)
         compare_roles = extract_roles(roles_names.flat_uniq)
@@ -59,7 +100,7 @@ module RoleStrategy::Mongoid
         role_names = role_names.flat_uniq
         role_names = extract_roles(role_names)
         return nil if role_names.empty?
-        valids = role_class.find_roles(role_names).to_a
+
         vrs = select_valid_roles role_names
         set_roles(vrs)
       end

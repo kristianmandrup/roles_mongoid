@@ -15,9 +15,6 @@ end
 class Role
   include Mongoid::Document
   field :name, :type => String
-  # references_many :users
-
-  # references_many :users, :class_name => 'User', :stored_as => :array  
 
   validates_uniqueness_of :name
 
