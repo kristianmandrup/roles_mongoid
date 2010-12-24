@@ -1,55 +1,38 @@
 # Roles for Mongoid
 
-A Mongoid implementation of [roles generic](http://github.com/kristianmandrup/roles_generic)
+A Mongoid implementation of [Roles Generic](http://github.com/kristianmandrup/roles_generic). 
+See the Roles [wiki](http://github.com/kristianmandrup/roles_generic/wiki) for an overview of the API and how to use it.
 
-*Update Dec 21, 2010*
+## Role strategies
 
-New embedded role strategies added with specs
+Role strategies implemented:
 
-* embed_one_role
-* embed_many_roles
-
-## Intro
-
-Implements the [roles generic](http://github.com/kristianmandrup/roles_generic) Roles API
-
-Generic Role strategies implemented:
+Inline attribute on User
 
 * admin_flag
-
-* many_roles)
-* one_role
-
-* embed_many_roles
-* embed_one_role
-
 * roles_mask
 * role_string
 * role_strings
 
-# Install
+Reference Role
+
+* many_roles
+* one_role
+
+Embedded Role
+
+* embed_many_roles
+* embed_one_role
+
+## Install
 
 <code>gem install roles_mongoid</code>
 
-## Rails generator
+## Rails generators
 
 The library comes with a Rails 3 generator that lets you populate a user model with a role strategy of your choice. 
 
 The following role strategies are included by default. Add your own by adding extra files inside the strategy folder, one file for each role strategy is recommended.
-
-* admin_flag
-
-* many_roles
-* one_role)
-
-* embed_many_roles
-* embed_one_role
-
-* roles_mask
-* role_string
-* role_strings
-
-*Roles generator*
 
 Apply :admin_flag Role strategy to User model using default roles :admin and :guest (default)
 
