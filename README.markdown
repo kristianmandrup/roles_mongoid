@@ -28,6 +28,16 @@ Embedded Role
 
 <code>gem install roles_mongoid</code>
 
+## Install in Rails app
+
+Insert in Gemfile:
+
+<code>gem 'roles_mongoid'</code>
+
+Run <code>$ bundle install</code> from terminal
+
+Alternatively install using [Cream](http://github.com/kristianmandrup/cream)
+
 ## Rails generators
 
 The library comes with a Rails 3 generator that lets you populate a user model with a role strategy of your choice. 
