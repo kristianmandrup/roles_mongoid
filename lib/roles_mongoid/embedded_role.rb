@@ -1,5 +1,3 @@
-puts "Embedded Role"
-
 module Roles::Base
   def valid_roles_are(*role_list)
     strategy_class.valid_roles = role_list.to_symbols

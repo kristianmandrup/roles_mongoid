@@ -5,7 +5,7 @@ class User
   include Mongoid::Document  
   include Roles::Mongoid 
   
-  strategy :admin_flag, :default
+  strategy :admin_flag
   valid_roles_are :admin, :guest  
 
   field :name, :type => String  

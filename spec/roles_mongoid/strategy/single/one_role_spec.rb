@@ -1,14 +1,10 @@
 require 'spec_helper'
 
-use_roles_strategy :one_role
-
 class User
   include Mongoid::Document  
   include Roles::Mongoid 
   
-  strategy :one_role, :default
-  role_class :role
-
+  strategy :one_role
   valid_roles_are :admin, :guest, :user
 end
 

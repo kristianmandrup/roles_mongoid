@@ -6,9 +6,7 @@ class User
   include Mongoid::Document  
   include Roles::Mongoid 
   
-  strategy :embed_one_role, :role_class => :role, :config => :default
-  role_class :role
-
+  strategy :embed_one_role, :role_class => :role #, :config => :default
   valid_roles_are :admin, :guest, :user
 end
 

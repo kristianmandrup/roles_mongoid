@@ -1,9 +1,9 @@
-# Roles for Mongoid
+h1. Roles for Mongoid
 
 A Mongoid implementation of [Roles Generic](http://github.com/kristianmandrup/roles_generic). 
 See the Roles [wiki](http://github.com/kristianmandrup/roles_generic/wiki) for an overview of the API and how to use it.
 
-## Role strategies
+h2. Role strategies
 
 Role strategies implemented:
 
@@ -24,11 +24,11 @@ Embedded Role
 * embed_many_roles
 * embed_one_role
 
-## Install
+h2. Install
 
 <code>gem install roles_mongoid</code>
 
-## Install in Rails app
+h3. Install in Rails app
 
 Insert in Gemfile:
 
@@ -38,7 +38,31 @@ Run <code>$ bundle install</code> from terminal
 
 Alternatively install using [Cream](http://github.com/kristianmandrup/cream)
 
-## Rails generators
+h2. Strategy and roles configuration
+
+Example: _role_string_ strategy
+
+<pre>class User
+  include Mongoid::Document  
+  include Roles::Mongoid 
+
+  strategy :one_role
+  valid_roles_are :admin, :guest, :user
+end  
+</pre>
+
+Example: _one_role_ strategy
+
+<pre>class User
+  include Mongoid::Document  
+  include Roles::Mongoid 
+
+  strategy :one_role
+  valid_roles_are :admin, :guest, :user
+end  
+</pre>
+
+h2. Rails generators
 
 The library comes with a Rails 3 generator that lets you populate a user model with a role strategy of your choice. 
 
@@ -56,7 +80,7 @@ Apply :one_role Role strategy to User model without default roles, only with rol
 
 <code>$ rails g mongoid:roles_migration User --strategy one_role --roles user special editor --no-default-roles</code> 
 
-## Note on Patches/Pull Requests
+h2. Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -66,6 +90,6 @@ Apply :one_role Role strategy to User model without default roles, only with rol
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-## Copyright
+h2. Copyright
 
 Copyright (c) 2010 Kristian Mandrup. See LICENSE for details.

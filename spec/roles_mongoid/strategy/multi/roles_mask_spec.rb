@@ -6,8 +6,7 @@ class User
   include Mongoid::Document  
   include Roles::Mongoid 
   
-  strategy :roles_mask, :default
-
+  strategy :roles_mask
   valid_roles_are :admin, :guest, :user
 end
 
