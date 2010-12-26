@@ -5,16 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = %q{roles_mongoid}
-  s.version = "0.3.6"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-12-21}
+  s.date = %q{2010-12-26}
   s.description = %q{Makes it easy to set a role strategy on your User model in Mongoid}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.markdown"
+    "README.textile"
   ]
   s.files = [
     ".bundle/config",
@@ -22,12 +22,13 @@ Gem::Specification.new do |s|
     ".rspec",
     "Gemfile",
     "LICENSE",
-    "README.markdown",
+    "README.textile",
     "Rakefile",
     "VERSION",
     "lib/generators/mongoid/roles/roles_generator.rb",
     "lib/roles_mongoid.rb",
     "lib/roles_mongoid/base.rb",
+    "lib/roles_mongoid/base_role.rb",
     "lib/roles_mongoid/embedded_role.rb",
     "lib/roles_mongoid/namespaces.rb",
     "lib/roles_mongoid/role.rb",
