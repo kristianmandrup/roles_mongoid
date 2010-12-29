@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+class Role
+end
+
 class User
   include Mongoid::Document  
   include Roles::Mongoid 

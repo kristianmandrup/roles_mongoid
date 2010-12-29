@@ -1,6 +1,4 @@
-require 'roles_mongoid/base_role'
-
-class Role
+class <%= role_class %>
   include Mongoid::Document
   field :name, :type => String
 

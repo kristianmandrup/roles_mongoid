@@ -34,13 +34,7 @@ module Roles
         raise ArgumentError, "Unknown role strategy #{strategy_name}" if !MAP.keys.include? strategy_name
         use_roles_strategy strategy_name
 
-        if strategies_with_role_class.include? strategy_name
-          if !options.kind_of? Symbol
-            @role_class_name = get_role_class(strategy_name, options)
-          else
-            @role_class_name = default_role_class(strategy_name)
-          end
-        end
+        set_role_class(strategy_name, options) if strategies_with_role_class.include? strategy_name
         
         if default_options?(options) && MAP[strategy_name]
           instance_eval statement(MAP[strategy_name])
@@ -59,6 +53,10 @@ module Roles
       end    
 
       private
+
+      def set_role_class strategy_name, options = {}
+        @role_class_name = !options.kind_of?(Symbol) ? get_role_class(strategy_name, options) : default_role_class(strategy_name)
+      end
 
       def default_options? options = {}
         return true if options == :default                           
