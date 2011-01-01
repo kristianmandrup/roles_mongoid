@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{roles_mongoid}
-  s.version = "0.4.0"
+  s.version = "0.4.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-12-26}
+  s.date = %q{2011-01-01}
   s.description = %q{Makes it easy to set a role strategy on your User model in Mongoid}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/generators/mongoid/roles/roles_generator.rb",
+    "lib/generators/mongoid/roles/templates/role.rb",
     "lib/roles_mongoid.rb",
     "lib/roles_mongoid/base.rb",
     "lib/roles_mongoid/base_role.rb",
