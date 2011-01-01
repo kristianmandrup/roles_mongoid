@@ -32,10 +32,6 @@ module Mongoid
           insert_into_model user_model_name, :after => /include Mongoid::\w+/ do
             insertion_text
           end     
-
-          unless read_model(:user) =~ /use_roles_strategy/
-            inject_into_file model_file(:user), "use_roles_strategy :#{strategy}\n\n", :before => "class"
-          end        
         rescue Exception => e
           logger.debug"Error: #{e.message}"
         end
