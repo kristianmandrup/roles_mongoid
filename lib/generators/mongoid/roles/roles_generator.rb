@@ -3,33 +3,34 @@ require 'logging_assist'
 
 module Mongoid 
   module Generators
-    class RolesGenerator < Rails::Generators::NamedBase      
-      desc "Add role strategy to a model" 
+    class RolesGenerator < Rails::Generators::Base      
+      desc "Add role strategy to a Mongoid User model" 
 
-      # argument name
+      argument     :user_class,   :type => :string,   :default => 'User',                     :desc => "User class name"
       
-      class_option :strategy, :type => :string, :aliases => "-s", :default => 'role_string', 
+      class_option :strategy,     :type => :string,   :aliases => "-s",   :default => 'role_string', 
                    :desc => "Role strategy to use (admin_flag, role_string, roles_string, role_strings, roles_mask, one_role, many_roles, embed_one_role, embed_many_roles)"
 
-      class_option :logfile, :type => :string,   :default => nil,   :desc => "Logfile location"
-      class_option :roles, :type => :array, :aliases => "-r", :default => [], :desc => "Valid roles"
-      class_option :role_class,   :type => :string,   :aliases => "-rc", :default => 'Role', :desc => "Role class"
+      class_option :roles,        :type => :array,    :aliases => "-r",   :default => [],     :desc => "Valid roles"
+      class_option :role_class,   :type => :string,   :aliases => "-rc",  :default => 'Role', :desc => "Role class name"
+
+      class_option :logfile,      :type => :string,   :aliases => "-l",   :default => nil,    :desc => "Logfile location"
 
       def apply_role_strategy
         logger.add_logfile :logfile => logfile if logfile
-        logger.debug "apply_role_strategy for : #{strategy} in model #{name}"
+        logger.debug "apply_role_strategy for : #{strategy} in model #{user_class}"
 
         if !valid_strategy?
           say "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}", :red
         end
 
-        if !has_model_file?(user_model_name)
-          say "User model #{user_model_name} not found", :red
+        if !has_model_file?(user_class)
+          say "User model #{user_class} not found", :red
           return 
         end
 
         begin 
-          insert_into_model user_model_name, :after => /include Mongoid::\w+/ do
+          insert_into_model user_class, :after => /include Mongoid::\w+/ do
             insertion_text
           end     
         rescue Exception => e
@@ -56,10 +57,6 @@ module Mongoid
 
       def logfile
         options[:logfile]
-      end
-
-      def user_model_name
-        name || 'User'
       end
 
       def orm
@@ -102,7 +99,7 @@ module Mongoid
       end
 
       def has_valid_roles_statement? 
-        !(read_model(user_model_name) =~ /valid_roles_are/).nil?
+        !(read_model(user_class) =~ /valid_roles_are/).nil?
       end
 
       def insertion_text
