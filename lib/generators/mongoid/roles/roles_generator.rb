@@ -29,7 +29,14 @@ module Mongoid
           return 
         end
 
+        if !is_mongoid_model?(user_class)
+          say "User model #{user_class} is not a Mongoid Document", :red
+          return 
+        end
+        
         begin 
+          logger.debug "Trying to insert roles code into #{user_class}"     
+
           insert_into_model user_class, :after => /include Mongoid::\w+/ do
             insertion_text
           end     
@@ -46,6 +53,10 @@ module Mongoid
       extend Rails3::Assist::UseMacro
 
       use_orm :mongoid
+
+      def is_mongoid_model? name
+        read_model(name) =~ /include Mongoid::\w+/
+      end
 
       def valid_strategy?
         valid_strategies.include? strategy.to_sym
