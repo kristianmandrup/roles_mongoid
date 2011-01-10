@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{roles_mongoid}
-  s.version = "0.4.3"
+  s.version = "0.4.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.textile",
     "Rakefile",
     "VERSION",
+    "lib/generators/mongoid/roles/core_ext.rb",
     "lib/generators/mongoid/roles/roles_generator.rb",
     "lib/generators/mongoid/roles/templates/role.rb",
     "lib/roles_mongoid.rb",
