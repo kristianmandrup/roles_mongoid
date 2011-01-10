@@ -2,7 +2,7 @@ source :rubygems
 source 'http://gems.github.com/'
 
 group :default do
-  gem "mongoid",           '~> 2.0.0.beta.19'
+  gem "mongoid",           '>= 2.0.0.rc.1'
   gem 'bson',              '>= 1.1.1'
   gem "activesupport",     '~> 3.0.1'
   gem "require_all",       '~> 1.2.0' 
