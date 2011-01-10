@@ -1,5 +1,6 @@
 require 'rails3_artifactor'
 require 'logging_assist'
+require 'generators/mongoid/roles/core_ext'
 
 module Mongoid 
   module Generators
@@ -20,30 +21,30 @@ module Mongoid
 
       def apply_role_strategy
         logger.add_logfile :logfile => logfile if logfile
-        logger.debug "apply_role_strategy for : #{strategy} in model #{user_class}"
+        logger.debug "apply_role_strategy for : #{strategy} in model #{user_file}"
 
         if !valid_strategy?
-          say "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}", :red
+          logger.error "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}"
         end
 
-        if !has_model_file?(user_class_file)
-          say "User model #{user_class_file} not found", :red
+        if !has_model_file?(user_file)
+          logger.error "User model #{user_file} not found"
           return 
         end
 
-        if !is_mongoid_model?(user_class_file)
-          say "User model #{user_class_file} is not a Mongoid Document", :red
+        if !is_mongoid_model?(user_file)
+          logger.error "User model #{user_file} is not a Mongoid Document"
           return 
         end
         
         begin 
-          logger.debug "Trying to insert roles code into #{user_class_file}"     
+          logger.debug "Trying to insert roles code into #{user_file}"     
 
-          insert_into_model user_class_file, :after => /include Mongoid::\w+/ do
+          insert_into_model user_file, :after => /include Mongoid::\w+/ do
             insertion_text
           end     
         rescue Exception => e
-          logger.debug"Error: #{e.message}"
+          logger.error "Error: #{e.message}"
         end
         
         copy_role_class if role_class_strategy?
@@ -56,8 +57,12 @@ module Mongoid
 
       use_orm :mongoid
 
-      def user_class_file
-        user_class.to_s.underscore
+      def user_file
+        user_class.as_filename
+      end
+
+      def role_file
+        role_class.as_filename
       end
 
       def is_mongoid_model? name
@@ -80,13 +85,17 @@ module Mongoid
         :mongoid
       end
 
+      def orm_class
+        orm.to_s.camelize 
+      end
+
       def default_roles
         [:admin, :guest]        
       end
 
       def copy_role_class
-        logger.debug "copy_role_class: #{role_class.underscore}"
-        template 'role.rb', "app/models/#{role_class.underscore}.rb"
+        logger.debug "generating role model: #{role_file}"
+        template 'role.rb', "app/models/#{role_file}.rb"
       end
 
       def roles_to_add
@@ -102,7 +111,7 @@ module Mongoid
       end
 
       def strategy_option_arg
-        return ", :role_class => :#{role_class.underscore}" if role_class_strategy? && role_class.to_s != 'Role'
+        return ", :role_class => '#{role_class}'" if role_class_strategy? && role_class.to_s != 'Role'
         ''
       end
 
@@ -120,7 +129,7 @@ module Mongoid
       end
 
       def insertion_text
-        %Q{include Roles::#{orm.to_s.camelize} 
+        %Q{include Roles::#{orm_class} 
   #{role_strategy_statement}
   #{valid_roles_statement}}
       end
