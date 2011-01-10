@@ -1,5 +1,7 @@
 require 'generator_spec_helper'
-require_generator :mongoid => :roles
+# require_generator :mongoid => :roles
+
+require 'generators/mongoid/roles/roles_generator'
 
 # root_dir = Rails3::Assist::Directory.rails_root
 root_dir = File.join(Rails.application.config.root_dir, 'rails')
@@ -28,7 +30,7 @@ describe 'role strategy generator: admin_flag' do
         arguments = "User --strategy admin_flag --roles admin user"
         puts "arguments: #{arguments}"
         g.run_generator arguments.args
-        root_dir.should have_model :user do |clazz|
+        root_dir.should have_model_file :user do |clazz|
           clazz.should include_module 'Mongoid::Document'
           clazz.should include_module 'Roles::Mongoid'
           puts "clazz: #{clazz}"        
@@ -42,11 +44,16 @@ describe 'role strategy generator: admin_flag' do
       create_model :user do
         '# content'
       end
+      # puts read_model :user
+      
       with_generator do |g|   
         arguments = "User --strategy one_role --roles admin user"
         puts "arguments: #{arguments}"
         g.run_generator arguments.args
-        root_dir.should have_model :user do |clazz|
+        
+        # puts read_model :user        
+        
+        root_dir.should have_model_file :user do |clazz|
           clazz.should include_module 'Mongoid::Document'
           clazz.should include_module 'Roles::Mongoid'
           puts "clazz: #{clazz}"        

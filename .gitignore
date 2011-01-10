@@ -16,6 +16,8 @@ tmtags
 ## PROJECT::GENERAL
 coverage
 rdoc
-pkg
+pkg  
+tmp
+pkg/*
 
 ## PROJECT::SPECIFIC

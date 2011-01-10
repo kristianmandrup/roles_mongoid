@@ -17,7 +17,7 @@ begin
     gem.add_dependency "roles_generic",   '>= 0.3.3'
     
     gem.add_dependency 'rails3_artifactor', '>= 0.3.1'
-    gem.add_dependency 'logging_assist',    '~> 0.1.6'
+    gem.add_dependency 'logging_assist',    '>= 0.2.0'
 
 
   end

@@ -16,6 +16,8 @@ module Mongoid
 
       class_option :logfile,      :type => :string,   :aliases => "-l",   :default => nil,    :desc => "Logfile location"
 
+      source_root File.dirname(__FILE__) + '/templates'
+
       def apply_role_strategy
         logger.add_logfile :logfile => logfile if logfile
         logger.debug "apply_role_strategy for : #{strategy} in model #{user_class}"
@@ -24,20 +26,20 @@ module Mongoid
           say "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}", :red
         end
 
-        if !has_model_file?(user_class)
-          say "User model #{user_class} not found", :red
+        if !has_model_file?(user_class_file)
+          say "User model #{user_class_file} not found", :red
           return 
         end
 
-        if !is_mongoid_model?(user_class)
-          say "User model #{user_class} is not a Mongoid Document", :red
+        if !is_mongoid_model?(user_class_file)
+          say "User model #{user_class_file} is not a Mongoid Document", :red
           return 
         end
         
         begin 
-          logger.debug "Trying to insert roles code into #{user_class}"     
+          logger.debug "Trying to insert roles code into #{user_class_file}"     
 
-          insert_into_model user_class, :after => /include Mongoid::\w+/ do
+          insert_into_model user_class_file, :after => /include Mongoid::\w+/ do
             insertion_text
           end     
         rescue Exception => e
@@ -53,6 +55,10 @@ module Mongoid
       extend Rails3::Assist::UseMacro
 
       use_orm :mongoid
+
+      def user_class_file
+        user_class.to_s.underscore
+      end
 
       def is_mongoid_model? name
         read_model(name) =~ /include Mongoid::\w+/
@@ -96,7 +102,7 @@ module Mongoid
       end
 
       def strategy_option_arg
-        return ", :role_class => :#{role_class.to_s.underscore}" if role_class_strategy? && role_class.to_s != 'Role'
+        return ", :role_class => :#{role_class.underscore}" if role_class_strategy? && role_class.to_s != 'Role'
         ''
       end
 
