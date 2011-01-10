@@ -12,5 +12,6 @@ group :default do
 end
 
 group :test do
-  gem "rspec", '>= 2.0.1'
+  gem 'rspec',            '>= 2.0.1'
+  gem 'generator-spec',   '>= 0.7.0'
 end
