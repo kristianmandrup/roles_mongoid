@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+# IMPORTANT
+# This is only to support Mongoid 2 before rc.5
+
 class Role
 end
 
