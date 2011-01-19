@@ -17,8 +17,9 @@ module Roles
       MAP = {
         :admin_flag   => "field :admin_flag, :type => Boolean",
         
-        :many_roles   => "references_many :many_roles, :stored_as => :array, :class_name => 'Role'",
-        :one_role     => "referenced_in :one_role, :class_name => 'Role'",
+        :many_roles_old   => "references_many :many_roles, :stored_as => :array, :class_name => 'Role'",
+        :many_roles       => "references_and_referenced_in_many :many_roles, :class_name => 'Role'",
+        :one_role         => "referenced_in :one_role, :class_name => 'Role'",
 
         :embed_many_roles   => "embeds_many :many_roles, :class_name => 'Role'",
         :embed_one_role     => "embeds_one :one_role, :class_name => 'Role'",
