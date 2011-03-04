@@ -3,7 +3,7 @@ require 'generator_spec_helper'
 
 require 'generators/mongoid/roles/roles_generator'
 
-# root_dir = Rails3::Assist::Directory.rails_root
+# root_dir = RailsAssist::Directory.rails_root
 root_dir = File.join(Rails.application.config.root_dir, 'rails')
 
 describe 'role strategy generator: admin_flag' do

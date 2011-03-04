@@ -24,43 +24,61 @@ module Mongoid
           require 'logging_assist'
           
           class_eval do
-            send :include, Rails3::Assist::BasicLogger
+            puts "self: #{self}"
+            send :include, RailsAssist::BasicLogger
           end
           
           logger.add_logfile :logfile => logfile if logfile
-          logger.debug "apply_role_strategy for : #{strategy} in model #{user_file}"
+          debug "apply_role_strategy for : #{strategy} in model #{user_file}"
         end
 
         if !valid_strategy?
-          logger.error "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}"
+          error "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}"
         end
 
         if !has_model_file?(user_file)
-          logger.error "User model #{user_file} not found"
+          error "User model #{user_file} not found"
           return 
         end
 
         if !is_mongoid_model?(user_file)
-          logger.error "User model #{user_file} is not a Mongoid Document"
+          error "User model #{user_file} is not a Mongoid Document"
           return 
         end
         
         begin 
-          logger.debug "Trying to insert roles code into #{user_file}"     
+          debug "Trying to insert roles code into #{user_file}"
 
           insert_into_model user_file, :after => /include Mongoid::\w+/ do
             insertion_text
           end     
         rescue Exception => e
-          logger.error "Error: #{e.message}"
+          error "Error: #{e.message}" if logger
         end
         
         copy_role_class if role_class_strategy?
       end 
       
       protected                  
+
+      def logger
+        nil
+      end
+
+      def debug msg
+        logger.debug msg if logger
+      end
+
+      def info msg
+        logger.info msg if logger
+      end
+
+      def error msg
+        logger.error msg if logger
+      end
+
       
-      extend Rails3::Assist::UseMacro
+      extend RailsAssist::UseMacro
 
       use_orm :mongoid
 
@@ -84,6 +102,10 @@ module Mongoid
         [:admin_flag, :one_role, :embed_one_role, :role_string, :embed_many_roles, :many_roles, :role_strings, :roles_mask]
       end
 
+      def logfile?
+        logfile
+      end
+
       def logfile
         options[:logfile]
       end
@@ -101,7 +123,7 @@ module Mongoid
       end
 
       def copy_role_class
-        logger.debug "generating role model: #{role_file}"
+        debug "generating role model: #{role_file}"
         template 'role.rb', "app/models/#{role_file}.rb"
       end
 
