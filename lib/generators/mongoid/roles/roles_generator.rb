@@ -1,5 +1,5 @@
-require 'rails3_artifactor'
-require 'logging_assist'
+require 'rails_artifactor'
+# require 'logging_assist'
 require 'generators/mongoid/roles/core_ext'
 
 module Mongoid 
@@ -20,8 +20,16 @@ module Mongoid
       source_root File.dirname(__FILE__) + '/templates'
 
       def apply_role_strategy
-        logger.add_logfile :logfile => logfile if logfile
-        logger.debug "apply_role_strategy for : #{strategy} in model #{user_file}"
+        if logfile?
+          require 'logging_assist'
+          
+          class_eval do
+            send :include, Rails3::Assist::BasicLogger
+          end
+          
+          logger.add_logfile :logfile => logfile if logfile
+          logger.debug "apply_role_strategy for : #{strategy} in model #{user_file}"
+        end
 
         if !valid_strategy?
           logger.error "Strategy #{strategy} is not currently supported, please try one of #{valid_strategies.join(', ')}"
@@ -51,8 +59,7 @@ module Mongoid
       end 
       
       protected                  
-
-      include Rails3::Assist::BasicLogger
+      
       extend Rails3::Assist::UseMacro
 
       use_orm :mongoid

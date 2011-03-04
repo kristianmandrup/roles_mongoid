@@ -1,6 +1,5 @@
 require 'rspec'
-require 'rspec/autorun'     
-require 'rails3_artifactor'
+require 'rails_artifactor'
 require 'generator-spec'
 require 'roles_generic'
 

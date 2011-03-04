@@ -1,4 +1,4 @@
-require 'rspec/core'
+require 'rspec'
 require 'mongoid'
 require 'roles_mongoid'
                  

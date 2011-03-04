@@ -7,18 +7,18 @@ begin
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/roles_mongoid"
     gem.authors = ["Kristian Mandrup"]
-    gem.add_development_dependency 'rspec',             '>= 2.4.0'
-    gem.add_development_dependency 'generator-spec',    '>= 0.7.0'
+    gem.add_development_dependency 'rspec',             '>= 2.4.1'
+    gem.add_development_dependency 'generator-spec',    '>= 0.7.3'
 
-    gem.add_dependency 'mongoid',           '~> 2.0.0.rc.5'
-    gem.add_dependency 'bson',              '>= 1.1.5'
+    gem.add_dependency 'mongoid',           '~> 2.0.0.rc.6'
+    gem.add_dependency 'bson',              '>= 1.1.6'
 
-    gem.add_dependency 'sugar-high',        '~> 0.3.5'
+    gem.add_dependency 'sugar-high',        '~> 0.4.0'
     gem.add_dependency 'require_all',       '~> 1.2.0'
-    gem.add_dependency "roles_generic",     '>= 0.3.6'
+    gem.add_dependency "roles_generic",     '~> 0.3.8'
     
-    gem.add_dependency 'rails3_artifactor', '>= 0.3.1'
-    gem.add_dependency 'logging_assist',    '>= 0.2.1'
+    gem.add_dependency 'rails_artifactor',  '>= 0.3.3'
+    # gem.add_dependency 'logging_assist',    '>= 0.2.1'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
