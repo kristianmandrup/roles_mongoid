@@ -1,5 +1,4 @@
 require 'rails_artifactor'
-# require 'logging_assist'
 require 'generators/mongoid/roles/core_ext'
 
 module Mongoid 
@@ -24,7 +23,6 @@ module Mongoid
           require 'logging_assist'
           
           class_eval do
-            puts "self: #{self}"
             send :include, RailsAssist::BasicLogger
           end
           
