@@ -17,7 +17,7 @@ begin
     gem.add_dependency 'require_all',       '~> 1.2.0'
     gem.add_dependency "roles_generic",     '~> 0.3.8'
     
-    gem.add_dependency 'rails_artifactor',  '>= 0.3.3'
+    gem.add_dependency 'rails_artifactor',  '>= 0.3.5'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
