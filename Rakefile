@@ -16,8 +16,9 @@ begin
     gem.add_dependency 'sugar-high',        '>= 0.4.9.5'
     gem.add_dependency 'require_all',       '~> 1.2.0'
     gem.add_dependency "roles_generic",     '~> 0.3.9'
-    
-    gem.add_dependency 'rails_artifactor',  '>= 0.3.5'
+
+    gem.add_dependency "activesupport",     '>= 3.0.1'
+    gem.add_dependency 'rails_artifactor',  '>= 0.3.6'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
