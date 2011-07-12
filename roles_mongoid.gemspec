@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{roles_mongoid}
-  s.version = "0.4.7"
+  s.version = "0.4.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2011-05-09}
+  s.authors = ["Kristian Mandrup"]
+  s.date = %q{2011-07-12}
   s.description = %q{Makes it easy to set a role strategy on your User model in Mongoid}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -69,57 +69,65 @@ Gem::Specification.new do |s|
     "tmp/rails/config/routes.rb"
   ]
   s.homepage = %q{http://github.com/kristianmandrup/roles_mongoid}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.0}
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Implementation of Roles generic API for Mongoid}
-  s.test_files = [
-    "spec/generator_spec_helper.rb",
-    "spec/roles_mongoid/generators/roles_generator_spec.rb",
-    "spec/roles_mongoid/strategy/api_examples.rb",
-    "spec/roles_mongoid/strategy/multi/embed_many_roles_spec.rb",
-    "spec/roles_mongoid/strategy/multi/many_roles_old_spec.rb",
-    "spec/roles_mongoid/strategy/multi/many_roles_spec.rb",
-    "spec/roles_mongoid/strategy/multi/role_strings_spec.rb",
-    "spec/roles_mongoid/strategy/multi/roles_mask_spec.rb",
-    "spec/roles_mongoid/strategy/single/admin_flag_spec.rb",
-    "spec/roles_mongoid/strategy/single/embed_one_role_spec.rb",
-    "spec/roles_mongoid/strategy/single/one_role_spec.rb",
-    "spec/roles_mongoid/strategy/single/role_string_spec.rb",
-    "spec/roles_mongoid/strategy/user_setup.rb",
-    "spec/spec_helper.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rspec>, [">= 2.4.1"])
-      s.add_development_dependency(%q<generator-spec>, [">= 0.7.3"])
-      s.add_runtime_dependency(%q<mongoid>, ["~> 2.0.1"])
-      s.add_runtime_dependency(%q<bson>, [">= 1.1.6"])
-      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.4.0"])
+      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.1"])
+      s.add_runtime_dependency(%q<bson>, [">= 1.2.0"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.1"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_runtime_dependency(%q<roles_generic>, ["~> 0.3.8"])
-      s.add_runtime_dependency(%q<rails_artifactor>, [">= 0.3.3"])
+      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.4.9.5"])
+      s.add_runtime_dependency(%q<roles_generic>, ["~> 0.3.9"])
+      s.add_runtime_dependency(%q<rails_artifactor>, [">= 0.3.6"])
+      s.add_development_dependency(%q<rspec>, [">= 2.4.1"])
+      s.add_development_dependency(%q<generator-spec>, [">= 0.7.5"])
+      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.1"])
+      s.add_runtime_dependency(%q<bson>, [">= 1.2.0"])
+      s.add_runtime_dependency(%q<sugar-high>, [">= 0.4.9.5"])
+      s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
+      s.add_runtime_dependency(%q<roles_generic>, ["~> 0.3.9"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 3.0.1"])
+      s.add_runtime_dependency(%q<rails_artifactor>, [">= 0.3.6"])
     else
-      s.add_dependency(%q<rspec>, [">= 2.4.1"])
-      s.add_dependency(%q<generator-spec>, [">= 0.7.3"])
-      s.add_dependency(%q<mongoid>, ["~> 2.0.1"])
-      s.add_dependency(%q<bson>, [">= 1.1.6"])
-      s.add_dependency(%q<sugar-high>, ["~> 0.4.0"])
+      s.add_dependency(%q<mongoid>, [">= 2.0.1"])
+      s.add_dependency(%q<bson>, [">= 1.2.0"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.1"])
       s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_dependency(%q<roles_generic>, ["~> 0.3.8"])
-      s.add_dependency(%q<rails_artifactor>, [">= 0.3.3"])
+      s.add_dependency(%q<sugar-high>, ["~> 0.4.9.5"])
+      s.add_dependency(%q<roles_generic>, ["~> 0.3.9"])
+      s.add_dependency(%q<rails_artifactor>, [">= 0.3.6"])
+      s.add_dependency(%q<rspec>, [">= 2.4.1"])
+      s.add_dependency(%q<generator-spec>, [">= 0.7.5"])
+      s.add_dependency(%q<mongoid>, [">= 2.0.1"])
+      s.add_dependency(%q<bson>, [">= 1.2.0"])
+      s.add_dependency(%q<sugar-high>, [">= 0.4.9.5"])
+      s.add_dependency(%q<require_all>, ["~> 1.2.0"])
+      s.add_dependency(%q<roles_generic>, ["~> 0.3.9"])
+      s.add_dependency(%q<activesupport>, [">= 3.0.1"])
+      s.add_dependency(%q<rails_artifactor>, [">= 0.3.6"])
     end
   else
-    s.add_dependency(%q<rspec>, [">= 2.4.1"])
-    s.add_dependency(%q<generator-spec>, [">= 0.7.3"])
-    s.add_dependency(%q<mongoid>, ["~> 2.0.1"])
-    s.add_dependency(%q<bson>, [">= 1.1.6"])
-    s.add_dependency(%q<sugar-high>, ["~> 0.4.0"])
+    s.add_dependency(%q<mongoid>, [">= 2.0.1"])
+    s.add_dependency(%q<bson>, [">= 1.2.0"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.1"])
     s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-    s.add_dependency(%q<roles_generic>, ["~> 0.3.8"])
-    s.add_dependency(%q<rails_artifactor>, [">= 0.3.3"])
+    s.add_dependency(%q<sugar-high>, ["~> 0.4.9.5"])
+    s.add_dependency(%q<roles_generic>, ["~> 0.3.9"])
+    s.add_dependency(%q<rails_artifactor>, [">= 0.3.6"])
+    s.add_dependency(%q<rspec>, [">= 2.4.1"])
+    s.add_dependency(%q<generator-spec>, [">= 0.7.5"])
+    s.add_dependency(%q<mongoid>, [">= 2.0.1"])
+    s.add_dependency(%q<bson>, [">= 1.2.0"])
+    s.add_dependency(%q<sugar-high>, [">= 0.4.9.5"])
+    s.add_dependency(%q<require_all>, ["~> 1.2.0"])
+    s.add_dependency(%q<roles_generic>, ["~> 0.3.9"])
+    s.add_dependency(%q<activesupport>, [">= 3.0.1"])
+    s.add_dependency(%q<rails_artifactor>, [">= 0.3.6"])
   end
 end
 
